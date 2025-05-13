@@ -24,6 +24,6 @@ router.get('/', protect, authorize('admin', 'procurement_manager'), getAllOrders
 router.get('/:id', protect, getOrderById);
 
 // Procurement Manager confirms the order
-router.post('/:id/confirm', protect, authorize('admin', 'procurement_manager'), confirmOrder);
+router.put('/:id/confirm', protect, authorize('admin', 'procurement_manager'), confirmOrder);
 
 module.exports = router;
