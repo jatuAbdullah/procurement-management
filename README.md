@@ -75,7 +75,7 @@ server.js -> Entry point
 ### 📦 Orders
 - `POST /api/orders` — Create an order
 - `GET /api/orders` — Get all orders
-- `GET /api/orders` — Get all orders
+- `GET /api/orders/:id` — Get orders by ID
 - `PUT /api/orders/:id/status` — Update order status
 
 ### 📋 Checklists
