@@ -52,14 +52,12 @@ The **Procurement Management System** is a backend service designed to streamlin
 
 ## 📁 Folder Structure
 procurement-management/
-├── controllers/ # Route controllers (e.g., auth, user, order, checklist, answer)
-├── models/ # Mongoose schemas (e.g., User, Order, Checklist, Answer)
-├── routes/ # API endpoints organized by feature
-├── middlewares/ # Authentication and role-based access control
-├── uploads/ # Uploaded images (handled via multer)
-├── .env # Environment variables
-├── server.js # Entry point of the application
-└── package.json # Project metadata and dependencie
+/controllers -> All route controllers
+/models -> Mongoose schemas
+/routes -> API endpoints
+/middlewares -> Auth & role guards
+/uploads -> Uploaded images
+server.js -> Entry point
 
 
 ---
