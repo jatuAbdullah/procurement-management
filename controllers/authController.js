@@ -1,8 +1,15 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator');
 
 // Register a new user (Only Admin can create users)
 exports.registerUser = async (req, res) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  
   const { name, email, password, role } = req.body;
 
   try {
@@ -47,7 +54,14 @@ exports.registerUser = async (req, res) => {
 
 // Authenticate and log in user
 exports.loginUser = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  
   const { email, password } = req.body;
+
+  
 
   try {
     // Find user by email

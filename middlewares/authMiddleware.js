@@ -22,6 +22,7 @@ const protect = async (req, res, next) => {
 };
 
 // Middleware to check if user has the required role(s)
+// using express validator.
 const authorize = (roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {

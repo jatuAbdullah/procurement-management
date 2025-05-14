@@ -1,14 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const helmet = require('helmet')
 const morgan = require('morgan');
+const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoute'); 
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const checklistRoutes = require('./routes/checklistRoutes');
 const answerRoutes = require('./routes/answerRoute');
-const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
-
 
 dotenv.config();
 
@@ -17,6 +17,12 @@ connectDB();
 
 const app = express();
 app.use(express.json()); // Body parser
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+// Helmet for security headers
+app.use(helmet());
+
+
 
 
 // Use Morgan only in development mode
