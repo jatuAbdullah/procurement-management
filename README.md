@@ -135,11 +135,3 @@ JWT_SECRET=your_jwt_secret
 NODE_ENV=development
 ```
 
----
-
-Let me know if you'd like to include:
-
-* Sample `.env` file
-* Postman collection
-* Frontend integration info
-* Deployment guide (e.g., NGINX + PM2 + HTTPS)
