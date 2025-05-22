@@ -16,12 +16,18 @@ dotenv.config();
 connectDB();
 
 const app = express();
+app.set('trust proxy', true);
+
 app.use(express.json()); // Body parser
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 
 // Helmet for security headers
 app.use(helmet());
 
+app.use((req, res, next) => {
+  console.log('Forwarded by:', req.headers['x-forwarded-for']);
+  next();
+});
 
 
 

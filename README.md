@@ -1,96 +1,145 @@
-# Procurement Management System
+Here's your updated `README.md` with consistent formatting, clarity, and a polished presentation:
 
-## 📦 Overview
+---
 
-The **Procurement Management System** is a backend service designed to streamline and track procurement operations within a supply chain. It manages the lifecycle of an order from checklist creation to inspection, verification, and tracking—supporting multiple user roles.
+# 📦 Procurement Management System
+
+A **backend service** designed to manage and streamline procurement workflows across multiple user roles—from order creation to inspection and final verification.
 
 ---
 
 ## 👥 User Roles
 
-- **Admin**: Owner of the system, manages all users and oversees operations.
-- **Procurement Manager**: Creates orders, builds or assigns checklists, verifies inspections.
-- **Inspection Manager**: Fills checklists, uploads inspection images, validates conditions before transport.
-- **Client**: Can view order status and suggest requirements for transport (offline).
+* **Admin**: Manages all users, checklists, and oversees procurement operations.
+* **Procurement Manager**: Creates orders, attaches checklists, verifies inspections.
+* **Inspection Manager**: Conducts inspections, fills checklists, uploads images.
+* **Client** *(offline)*: Submits requirements and views order status.
 
 ---
 
 ## 🔁 Workflow
 
-1. **Client** submits order requirements (offline).
-2. **Procurement Manager** creates the order and attaches a checklist (new or existing).
-3. **Inspection Manager** fills the checklist, uploads images, and submits inspection.
-4. **Procurement Manager** verifies the checklist and confirms the order.
-5. **Admin** can monitor all operations and data.
+1. **Client** submits order requirements *(offline)*.
+2. **Procurement Manager**:
+
+   * Creates the order
+   * Attaches a checklist (new or existing)
+3. **Inspection Manager**:
+
+   * Fills checklist
+   * Uploads relevant inspection images
+4. **Procurement Manager**:
+
+   * Verifies submitted checklist
+   * Confirms the order
+5. **Admin**:
+
+   * Monitors all activity
+   * Manages system users and configurations
 
 ---
 
-## ✅ Features
+## ✅ Key Features
 
-- Authentication and role-based access
-- Role management (Admin creates all users)
-- Dynamic checklist creation with:
-  - Boolean questions
-  - Single & multiple choice
-  - Text answers
-  - Image uploads
-- Inspection manager can fill and upload answers/images
-- Checklist versioning (updates won’t affect old submissions)
-- Order status tracking and updates
+* 🔐 **JWT Authentication** and **role-based access control**
+* 👤 **User & role management** (Admin-controlled)
+* 📋 **Dynamic checklists** with:
+
+  * Boolean fields
+  * Single & multiple choice questions
+  * Text input
+  * Image uploads via Multer
+* 📷 **Image upload support** for inspections
+* 🔄 **Checklist versioning** to retain historical data integrity
+* 📦 **Order status updates** and tracking
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Auth**: JWT
-- **File Upload**: Multer
-- **Others**: bcrypt, dotenv
+* **Backend**: Node.js, Express.js
+* **Database**: MongoDB
+* **Authentication**: JWT, bcrypt
+* **File Upload**: Multer
+* **Environment Config**: dotenv
 
 ---
 
 ## 📁 Folder Structure
-procurement-management/
-/controllers -> All route controllers
-/models -> Mongoose schemas
-/routes -> API endpoints
-/middlewares -> Auth & role guards
-/uploads -> Uploaded images
-server.js -> Entry point
 
+```
+procurement-management/
+├── controllers/        # API logic
+├── models/             # Mongoose schemas
+├── routes/             # REST API endpoints
+├── middlewares/        # Auth, error handling, role guards
+├── uploads/            # Inspection image uploads
+└── server.js           # Application entry point
+```
 
 ---
 
 ## 📌 API Endpoints
 
 ### 🔐 Authentication
-- `POST /api/auth/register` — Admin creates new users
-- `POST /api/auth/login` — All users login
+
+* `POST /api/auth/register` — Admin creates new users
+* `POST /api/auth/login` — All roles login
 
 ### 👥 Users
-- `GET /api/users` — View all users
-- `GET /api/users/:id` — View user by ID
+
+* `GET /api/users` — List all users
+* `GET /api/users/:id` — Get user by ID
 
 ### 📦 Orders
-- `POST /api/orders` — Create an order
-- `GET /api/orders` — Get all orders
-- `GET /api/orders/:id` — Get orders by ID
-- `PUT /api/orders/:id/status` — Update order status
+
+* `POST /api/orders` — Create a new order
+* `GET /api/orders` — List all orders
+* `GET /api/orders/:id` — Get order by ID
+* `PUT /api/orders/:id/status` — Update order status
 
 ### 📋 Checklists
-- `POST /api/checklists` — Create a checklist
-- `GET /api/checklists` — List all checklists
+
+* `POST /api/checklists` — Create a new checklist
+* `GET /api/checklists` — Get all checklists
 
 ### ✅ Answers
-- `POST /api/answers/submit` — Submit filled checklist with optional image
-- `GET /api/answers/:orderId` — Get filled answers by order
+
+* `POST /api/answers/submit` — Submit filled checklist + image(s)
+* `GET /api/answers/:orderId` — Retrieve submitted answers for an order
 
 ---
 
 ## 🚀 Getting Started
 
-### 🔧 Install dependencies
+### 🔧 Install Dependencies
 
 ```bash
 npm install
+```
+
+### 🟢 Run the Server
+
+```bash
+npm run dev  # for development with nodemon
+# or
+node server.js
+```
+
+### ⚙️ Environment Variables (`.env`)
+
+```
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/procurement_db
+JWT_SECRET=your_jwt_secret
+NODE_ENV=development
+```
+
+---
+
+Let me know if you'd like to include:
+
+* Sample `.env` file
+* Postman collection
+* Frontend integration info
+* Deployment guide (e.g., NGINX + PM2 + HTTPS)
